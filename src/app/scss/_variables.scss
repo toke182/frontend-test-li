@@ -1,0 +1,21 @@
+// Colors
+$white: #fff;
+$grey: #474850;
+$soft-grey: #F5F5F5;
+$green: #5cb85c;
+$red: #d9534f;
+
+// Font sizes
+$font-size-base: 14px;
+$font-size-xxx-large: floor(($font-size-base * 2));   // 28px
+$font-size-xx-large: floor(($font-size-base * 1.6)); // 22px
+$font-size-x-large: ceil(($font-size-base * 1.4));  // 20px
+$font-size-large: floor($font-size-base * 1.2);   // 16px
+
+// Title font sizes (Do not use, just for bootstrap)
+$font-size-h1: $font-size-xx-large;
+$font-size-h2: $font-size-x-large;
+
+// Button colors
+$btn-primary-color: $white;
+$btn-primary-bg: $grey;

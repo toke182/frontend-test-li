@@ -1,0 +1,16 @@
+form.investment {
+  >label {
+    display: block;
+  }
+  >input[name="amount"] {
+    display: inline-block;
+    line-height: 22px;
+    width: 190px;
+    margin-right: 5px;
+  }
+}
+
+.loans-total-ammount {
+  font-size: $font-size-large;
+  text-align: center;
+}

@@ -1,0 +1,15 @@
+.btn {
+  cursor: pointer;
+  &.btn-small {
+    line-height: 22px;
+  }
+  &.btn-big {
+    padding: 10px 15px;
+    font-size: $font-size-large;
+  }
+  &.btn-primary {
+    color: $white;
+    background-color: $grey;
+    border: $grey;
+  }
+}

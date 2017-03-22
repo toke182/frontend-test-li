@@ -1,3 +1,9 @@
-body {
-  background-color: red;
-}
+@import "./app/scss/variables";
+@import "./app/scss/globals";
+@import "./app/scss/utils";
+@import "./app/scss/modal";
+@import "./app/scss/buttons";
+@import "./app/scss/thombstone";
+
+@import "./app/scss/pages/loans";
+
