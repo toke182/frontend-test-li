@@ -1,8 +1,12 @@
 import {combineReducers} from 'redux';
-import scaffolding from './scaffolding';
+
+// Reducers
+import loans from './loans';
+import loansUi from './loansUi';
 
 const rootReducer = combineReducers({
-  scaffolding
+  loans,
+  loansUi
 });
 
 export default rootReducer;

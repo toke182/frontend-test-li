@@ -1,0 +1,2 @@
+export const SHOW_LOAN_DETAIL = 'SHOW_LOAN_DETAIL';
+export const HIDE_LOAN_DETAIL = 'HIDE_LOAN_DETAIL';
