@@ -15,10 +15,11 @@ class LoanThombstone extends Component {
     const {loan} = this.props;
 
     return (
-      <div>
-        <h2>{loan.title}</h2>
-        <span className={loan.invested ? 'show' : 'hide'}>INVESTED</span>
-        <ul>
+      <div className="thombstone">
+        <h2 className="h2 title">{loan.title}</h2>
+        <span className={`invested ${loan.invested ? 'show' : 'hide'}`}>Invested</span>
+        <div className="clearfix"/>
+        <ul className="thombstone-detail">
           <li>Tranche: {loan.tranche}</li>
           <li>Available: {loan.available}</li>
           <li>Annualised return: {loan.annualised_return}</li>
@@ -26,9 +27,10 @@ class LoanThombstone extends Component {
           <li>Ltv: {loan.ltv}</li>
           <li>Amount: £{loan.amount}</li>
         </ul>
-        <button onClick={this.handleShowLoanDetail}>
+        <button className="btn btn-primary btn-big" onClick={this.handleShowLoanDetail}>
           Invest in Loan
         </button>
+        <div className="clearfix"/>
       </div>
     );
   }

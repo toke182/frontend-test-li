@@ -23,26 +23,26 @@ class LoanDetail extends Component {
   }
 
   render() {
-    const {loan, isDetailShown} = this.props;
+    const {loan} = this.props;
     if (!loan) {
       return null;
     }
 
     return (
-      <div className={isDetailShown ? 'show' : 'hide'}>
-        <h2>Invest in Loan</h2>
-        <p>{loan.title}</p>
+      <div>
+        <h2 className="modal-title h2">Invest in Loan</h2>
+        <span>{loan.title}</span>
         <ul>
           <li>Amount available: £{loan.available}</li>
           <li>
             Loan ends in: {moment().add(loan.term_remaining, 'seconds').fromNow(true)}
           </li>
         </ul>
-        <form onSubmit={this.handleSubmit}>
+        <form className="investment" onSubmit={this.handleSubmit}>
           <label htmlFor="amount">Investment Amount (£)</label>
           <input id="amount" name="amount" type="number" step="any"/>
           <span className={this.isAvailableAmountExceded() ? 'show' : 'hide'}>Amount introduced is bigger than available</span>
-          <button type="submit">Invest now</button>
+          <button type="submit" className="btn btn-small btn-primary">Invest now</button>
         </form>
         <button onClick={this.handleHideLoanDetail}>HIDE DETAIL</button>
       </div>
@@ -53,7 +53,6 @@ class LoanDetail extends Component {
 LoanDetail.propTypes = {
   loan: PropTypes.object,
   errors: PropTypes.array,
-  isDetailShown: PropTypes.bool,
   onHideLoanDetail: PropTypes.func.isRequired,
   onSubmitInvestmentAmount: PropTypes.func.isRequired
 };

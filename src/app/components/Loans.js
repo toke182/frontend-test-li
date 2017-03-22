@@ -50,6 +50,7 @@ class Loans extends Component {
 
   render() {
     const {loans, loansUi} = this.props;
+
     return (
       <div>
         <h1>Current Loans</h1>
@@ -64,20 +65,23 @@ class Loans extends Component {
             })
           }
         </ul>
-        <p>
-          Total amount available for investment:
-          <strong>£{this.sumTotalAvailable()}</strong>
+        <p className="loans-total-ammount">
+          Total amount available for investment:&nbsp;
+          <strong>£ {this.sumTotalAvailable()}</strong>
         </p>
 
-        <LoanDetail
-          loan={loans.find(loan => {
-            return parseInt(loan.id, 10) === loansUi.showLoanDetail;
-          })}
-          isDetailShown={this.isDetailShown(loansUi)}
-          onHideLoanDetail={this.handleHideLoanDetail}
-          onSubmitInvestmentAmount={this.handleSubmitInvestmentAmount}
-          errors={loansUi.errors}
-          />
+        <div className={`modal ${this.isDetailShown(loansUi) ? 'show' : 'hide'}`}>
+          <div className="modal-container">
+            <LoanDetail
+              loan={loans.find(loan => {
+                return parseInt(loan.id, 10) === loansUi.showLoanDetail;
+              })}
+              onHideLoanDetail={this.handleHideLoanDetail}
+              onSubmitInvestmentAmount={this.handleSubmitInvestmentAmount}
+              errors={loansUi.errors}
+              />
+          </div>
+        </div>
       </div>
     );
   }
