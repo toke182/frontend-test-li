@@ -25,16 +25,27 @@ class Loans extends Component {
 
   handleHideLoanDetail() {
     const {loansUiActions} = this.props;
-
+    loansUiActions.removeErrorAmountExceded();
     loansUiActions.hideLoanDetail();
   }
 
-  handleSubmitInvestmentAmount(amount, loanId) {
-    const payload = {amount, id: loanId};
+  handleSubmitInvestmentAmount(amount, loan) {
+    const payload = {amount, id: loan.id};
     const {loansActions, loansUiActions} = this.props;
+    const isAvailableAmountExceded = parseFloat(loan.available.replace(/,/g, '')) - amount >= 0;
+    if (isAvailableAmountExceded) {
+      loansActions.addInvestment(payload);
+      this.handleHideLoanDetail();
+    } else {
+      loansUiActions.addErrorAmountExceded();
+    }
+  }
 
-    loansActions.addInvestment(payload);
-    loansUiActions.hideLoanDetail();
+  sumTotalAvailable() {
+    return this.props.loans
+      .map(loan => loan.available)
+      .reduce((acc, val) => acc + parseFloat(val.replace(/,/g, '')), 0)
+      .toLocaleString('en-US');
   }
 
   render() {
@@ -55,7 +66,7 @@ class Loans extends Component {
         </ul>
         <p>
           Total amount available for investment:
-          <strong>£238,456</strong>
+          <strong>£{this.sumTotalAvailable()}</strong>
         </p>
 
         <LoanDetail
@@ -65,6 +76,7 @@ class Loans extends Component {
           isDetailShown={this.isDetailShown(loansUi)}
           onHideLoanDetail={this.handleHideLoanDetail}
           onSubmitInvestmentAmount={this.handleSubmitInvestmentAmount}
+          errors={loansUi.errors}
           />
       </div>
     );

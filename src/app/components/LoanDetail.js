@@ -12,11 +12,14 @@ class LoanDetail extends Component {
     this.props.onHideLoanDetail();
   }
 
+  isAvailableAmountExceded() {
+    return this.props.errors.filter(error => error.id === 0).length > 0;
+  }
   handleSubmit(e) {
     e.preventDefault();
     const {amount} = e.target.elements;
     const {loan, onSubmitInvestmentAmount} = this.props;
-    onSubmitInvestmentAmount(amount.value, loan.id);
+    onSubmitInvestmentAmount(amount.value, loan);
   }
 
   render() {
@@ -38,6 +41,7 @@ class LoanDetail extends Component {
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="amount">Investment Amount (£)</label>
           <input id="amount" name="amount" type="number" step="any"/>
+          <span className={this.isAvailableAmountExceded() ? 'show' : 'hide'}>Amount introduced is bigger than available</span>
           <button type="submit">Invest now</button>
         </form>
         <button onClick={this.handleHideLoanDetail}>HIDE DETAIL</button>
@@ -48,6 +52,7 @@ class LoanDetail extends Component {
 
 LoanDetail.propTypes = {
   loan: PropTypes.object,
+  errors: PropTypes.array,
   isDetailShown: PropTypes.bool,
   onHideLoanDetail: PropTypes.func.isRequired,
   onSubmitInvestmentAmount: PropTypes.func.isRequired
