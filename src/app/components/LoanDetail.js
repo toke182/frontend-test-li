@@ -29,7 +29,7 @@ class LoanDetail extends Component {
         <h2 className="modal-title h2">Invest in Loan</h2>
         <span>{loan.title}</span>
         <ul>
-          <li>Amount available: £{loan.available}</li>
+          <li>Amount available: £{loan.available.toLocaleString('en-UK')}</li>
           <li>
             Loan ends in: {moment().add(loan.term_remaining, 'seconds').fromNow(true)}
           </li>

@@ -44,7 +44,7 @@ class Loans extends Component {
   handleSubmitInvestmentAmount(amount, loan) {
     const payload = {amount, id: loan.id};
     const {loansActions, loansUiActions} = this.props;
-    const isAvailableAmountExceded = parseFloat(loan.available.replace(/,/g, '')) - amount >= 0;
+    const isAvailableAmountExceded = loan.available - amount >= 0;
     if (isAvailableAmountExceded) {
       loansActions.addInvestment(payload);
       this.handleHideLoanDetail();
@@ -56,8 +56,8 @@ class Loans extends Component {
   sumTotalAvailable() {
     return this.props.loans
       .map(loan => loan.available)
-      .reduce((acc, val) => acc + parseFloat(val.replace(/,/g, '')), 0)
-      .toLocaleString('en-US');
+      .reduce((acc, val) => acc + val, 0)
+      .toLocaleString('en-UK');
   }
 
   handleMouseDown(e) {
@@ -96,7 +96,7 @@ class Loans extends Component {
           <div className="modal-container">
             <LoanDetail
               loan={loans.find(loan => {
-                return parseInt(loan.id, 10) === loansUi.showLoanDetail;
+                return loan.id === loansUi.showLoanDetail;
               })}
               onSubmitInvestmentAmount={this.handleSubmitInvestmentAmount}
               errors={loansUi.errors}

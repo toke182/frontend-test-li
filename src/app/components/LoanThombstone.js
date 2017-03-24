@@ -21,11 +21,11 @@ class LoanThombstone extends Component {
         <div className="clearfix"/>
         <ul className="thombstone-detail">
           <li>Tranche: {loan.tranche}</li>
-          <li>Available: {loan.available}</li>
+          <li>Available: {loan.available.toLocaleString('en-UK')}</li>
           <li>Annualised return: {loan.annualised_return}</li>
           <li>Term Remaining: {loan.term_remaining}</li>
           <li>Ltv: {loan.ltv}</li>
-          <li>Amount: £{loan.amount}</li>
+          <li>Amount: £{loan.amount.toLocaleString('en-UK')}</li>
         </ul>
         <button className="btn btn-primary btn-big" onClick={this.handleShowLoanDetail}>
           Invest in Loan
