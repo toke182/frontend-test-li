@@ -4,17 +4,13 @@ import moment from 'moment';
 class LoanDetail extends Component {
   constructor(props) {
     super(props);
-    this.handleHideLoanDetail = this.handleHideLoanDetail.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleHideLoanDetail() {
-    this.props.onHideLoanDetail();
   }
 
   isAvailableAmountExceded() {
     return this.props.errors.filter(error => error.id === 0).length > 0;
   }
+
   handleSubmit(e) {
     e.preventDefault();
     const {amount} = e.target.elements;
@@ -41,10 +37,11 @@ class LoanDetail extends Component {
         <form className="investment" onSubmit={this.handleSubmit}>
           <label htmlFor="amount">Investment Amount (£)</label>
           <input id="amount" name="amount" type="number" step="any"/>
-          <span className={this.isAvailableAmountExceded() ? 'show' : 'hide'}>Amount introduced is bigger than available</span>
+          <span className={this.isAvailableAmountExceded() ? 'show' : 'hide'}>
+            Amount introduced is bigger than available
+          </span>
           <button type="submit" className="btn btn-small btn-primary">Invest now</button>
         </form>
-        <button onClick={this.handleHideLoanDetail}>HIDE DETAIL</button>
       </div>
     );
   }
@@ -53,7 +50,6 @@ class LoanDetail extends Component {
 LoanDetail.propTypes = {
   loan: PropTypes.object,
   errors: PropTypes.array,
-  onHideLoanDetail: PropTypes.func.isRequired,
   onSubmitInvestmentAmount: PropTypes.func.isRequired
 };
 
