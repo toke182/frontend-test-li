@@ -1,4 +1,5 @@
 import React, {PropTypes, Component} from 'react';
+import moment from 'moment';
 
 class LoanThombstone extends Component {
   constructor() {
@@ -23,7 +24,7 @@ class LoanThombstone extends Component {
           <li>Tranche: {loan.tranche}</li>
           <li>Available: {loan.available.toLocaleString('en-UK')}</li>
           <li>Annualised return: {loan.annualised_return}</li>
-          <li>Term Remaining: {loan.term_remaining}</li>
+          <li>Term Remaining: {moment().add(loan.term_remaining, 'seconds').fromNow(true)}</li>
           <li>Ltv: {loan.ltv}</li>
           <li>Amount: £{loan.amount.toLocaleString('en-UK')}</li>
         </ul>
