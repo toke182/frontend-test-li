@@ -29,9 +29,12 @@ module.exports = {
       debug: true
     })
   ],
-  devtool: 'source-map',
+  devtool: 'inline-source-map',
   externals: {
-    'react/lib/ExecutionEnvironment': 'true',
-    'react/lib/ReactContext': 'true'
+    'jsdom': 'window',
+    'cheerio': 'window',
+    'react/addons': true,
+    'react/lib/ExecutionEnvironment': true,
+    'react/lib/ReactContext': true
   }
 };
