@@ -1,7 +1,8 @@
 .btn {
   cursor: pointer;
   &.btn-small {
-    line-height: 22px;
+    height: 35px;
+    font-size: 1em;
   }
   &.btn-big {
     padding: 10px 15px;
