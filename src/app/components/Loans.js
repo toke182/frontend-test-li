@@ -76,7 +76,7 @@ class Loans extends Component {
     return (
       <div>
         <h1>Current Loans</h1>
-        <ul>
+        <ul className="loan-thombstones">
           {
             loans.map((loan, i) => {
               return (

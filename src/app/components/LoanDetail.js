@@ -27,20 +27,20 @@ class LoanDetail extends Component {
     return (
       <div>
         <h2 className="modal-title h2">Invest in Loan</h2>
-        <span>{loan.title}</span>
+        <span data-q="loan-title">{loan.title}</span>
         <ul>
-          <li>Amount available: £{loan.available.toLocaleString('en-UK')}</li>
-          <li>
+          <li data-q="loan-available-amount">Amount available: £{loan.available.toLocaleString('en-UK')}</li>
+          <li data-q="loan-ends">
             Loan ends in: {moment().add(loan.term_remaining, 'seconds').fromNow(true)}
           </li>
         </ul>
         <form className="investment" onSubmit={this.handleSubmit}>
           <label htmlFor="amount">Investment Amount (£)</label>
           <input id="amount" name="amount" type="number" step="any"/>
-          <span className={this.isAvailableAmountExceded() ? 'show' : 'hide'}>
+          <button type="submit" className="btn btn-small btn-primary">Invest now</button>
+          <span data-q="amount-error" className={`error ${this.isAvailableAmountExceded() ? 'show' : 'hide'}`}>
             Amount introduced is bigger than available
           </span>
-          <button type="submit" className="btn btn-small btn-primary">Invest now</button>
         </form>
       </div>
     );
