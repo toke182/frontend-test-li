@@ -15,7 +15,9 @@ class LoanDetail extends Component {
     e.preventDefault();
     const {amount} = e.target.elements;
     const {loan, onSubmitInvestmentAmount} = this.props;
-    onSubmitInvestmentAmount(amount.value, loan);
+    if (amount.value) {
+      onSubmitInvestmentAmount(amount.value, loan);
+    }
   }
 
   render() {
